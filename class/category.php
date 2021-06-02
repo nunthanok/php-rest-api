@@ -1,6 +1,5 @@
 <?php
 
-
 class Category{
 
       // Connection
@@ -16,7 +15,6 @@ class Category{
 
       /// Db connection
       public function __construct($db){
-
             $this->conn = $db;
       }
 
@@ -41,7 +39,6 @@ class Category{
             $stmt = $this->conn->prepare($sqlQuery);
             
             // sanitize
-
             $this->CategoryName=htmlspecialchars(strip_tags($this->CategoryName));
             $this->Description=htmlspecialchars(strip_tags($this->Description));
 
@@ -62,16 +59,18 @@ class Category{
       //READ single
       public function getSingleCategory(){
 
+
             $sqlQuery = "SELECT CategoryID, CategoryName, Description FROM ".$this->db_table." WHERE CategoryID = ? LIMIT 0,1";
 
             $stmt = $this->conn->prepare($sqlQuery);
 
-            $stmt->bindParam(1, $this->id);
+            $stmt->bindParam(1, $this->CategoryID);
 
             $stmt->execute();    
 
             $dataRow = $stmt->fetch(PDO::FETCH_ASSOC);
 
+            // $this->CategoryID = "10";
             $this->CategoryName = $dataRow['CategoryName'];
             $this->Description = $dataRow['Description'];
 

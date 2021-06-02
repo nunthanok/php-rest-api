@@ -14,14 +14,15 @@
 
  $item = new Category($db);
 
- $item->id = isset($_GET['id']) ? $_GET['id'] : die();
+ $item->CategoryID = isset($_GET['id']) ? $_GET['id'] : die();
+
 
  $item->getSingleCategory();
 
  if($item->CategoryName != null){
      //Create Array
      $cate_arr = array(
-        "CategoryID" => $item->id,
+        "CategoryID" => $item->CategoryID,
         "CategoryName" => $item->CategoryName,
         "Description" => $item->Description
      );
