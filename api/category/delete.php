@@ -12,18 +12,29 @@
     $db = $database->getConnection();
     
     $item = new Category($db);
+
+    if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
+
+        // The request is using the POST method
+        $data = json_decode(file_get_contents("php://input"));
     
-    $data = json_decode(file_get_contents("php://input"));
+        $item->CategoryID = $data->id;
     
-    $item->id = $data->id;
+        // echo json_encode($item->CategoryID);
+        
+        if($item->deleteCategory()){ 
     
-    if($item->deleteCategory()){
+            echo json_encode("Category deleted.");
+    
+        } else{
+    
+            echo json_encode("Data could not be deleted");
+    
+        }
 
-        echo json_encode("Category deleted.");
+   }else{
 
-    } else{
+       echo json_encode("Methods not allow");
 
-        echo json_encode("Data could not be deleted");
-
-    }
+   }
 ?>

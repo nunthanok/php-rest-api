@@ -13,7 +13,7 @@ class Category{
       public $CategoryName;
       public $Description;
 
-      /// Db connection
+      // Db connection
       public function __construct($db){
             $this->conn = $db;
       }
@@ -90,7 +90,7 @@ class Category{
             //bind data 
             $stmt->bindParam(":name", $this->CategoryName);
             $stmt->bindParam(":descrip", $this->Description);
-            $stmt->bindParam(":id", $this->id);
+            $stmt->bindParam(":id", $this->CategoryID);
 
             if($stmt->execute()){
                   
@@ -98,7 +98,7 @@ class Category{
 
             }
 
-                  return false;
+            return false;
             
 
 
@@ -113,13 +113,16 @@ class Category{
 
             $this->CategoryID = htmlspecialchars(strip_tags($this->CategoryID));
 
-            $stmt->bindParam(1, $this->id);
+            $stmt->bindParam(1, $this->CategoryID);
 
             if($stmt->execute()){
 
                   return true;
             }
-                  return false;
+
+            return false;  
+     
+                 
       }
 
 

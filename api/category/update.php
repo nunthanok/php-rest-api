@@ -15,7 +15,7 @@
     
     $data = json_decode(file_get_contents("php://input"));
     
-    $item->CategoryID = $data->id;
+    $item->CategoryID = $data->CategoryID;
     
     // category values
     $item->CategoryName = $data->CategoryName;
